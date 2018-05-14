@@ -20,6 +20,13 @@ function enable() {
 }
 enable();
 
+var observer = new MutationObserver(function (mutations) {
+  enable()
+});
+
+var config = {subtree: true, childList: true};
+observer.observe(document, config);
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if (request.greeting === 'hello')
