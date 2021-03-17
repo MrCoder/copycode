@@ -2,13 +2,13 @@
 
 function enable() {
   // add the button to any code portion
-  $('pre > code').not('.injected').addClass('injected')
-    .before($('<span class="copy-button">copy</span>'))
+  $('pre').not('.injected').addClass('injected')
+    .pepend($('<span class="copy-button">copy</span>'))
     .parent().wrap('<div class="precontainer"></div>');
   // do the magic with clipboard.js
   new ClipboardJS('.copy-button', {
     text: function (trigger) {
-      return $(trigger.nextElementSibling).text();
+      return $(trigger.parentElement).text().slice(6);
     }
   })
     .on('success', function (e) {
